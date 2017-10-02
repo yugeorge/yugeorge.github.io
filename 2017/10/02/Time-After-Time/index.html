@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Javascript 高级程序设计 | 从前端到前端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Javascript 高级程序设计（一）&amp;lt;script&amp;gt;中内嵌部分代码中不能用&amp;lt;/script&amp;gt;，因为解释器遇到script后就会解释为script脚本停止。&amp;lt;script type=text/javascript src=“a.js”&amp;gt;这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js” 通常外部引用都要放到head中，例如CSS，但是为">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 高级程序设计">
+<meta property="og:url" content="http://yoursite.com/2017/10/02/Time-After-Time/index.html">
+<meta property="og:site_name" content="从前端到前端">
+<meta property="og:description" content="Javascript 高级程序设计（一）&amp;lt;script&amp;gt;中内嵌部分代码中不能用&amp;lt;/script&amp;gt;，因为解释器遇到script后就会解释为script脚本停止。&amp;lt;script type=text/javascript src=“a.js”&amp;gt;这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js” 通常外部引用都要放到head中，例如CSS，但是为">
+<meta property="og:updated_time" content="2017-10-02T03:06:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript 高级程序设计">
+<meta name="twitter:description" content="Javascript 高级程序设计（一）&amp;lt;script&amp;gt;中内嵌部分代码中不能用&amp;lt;/script&amp;gt;，因为解释器遇到script后就会解释为script脚本停止。&amp;lt;script type=text/javascript src=“a.js”&amp;gt;这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js” 通常外部引用都要放到head中，例如CSS，但是为">
+  
+    <link rel="alternate" href="/atom.xml" title="从前端到前端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">从前端到前端</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Time-After-Time" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/Time-After-Time/" class="article-date">
+  <time datetime="2017-10-02T03:06:27.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript 高级程序设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Javascript-高级程序设计（一）"><a href="#Javascript-高级程序设计（一）" class="headerlink" title="Javascript 高级程序设计（一）"></a>Javascript 高级程序设计（一）</h1><p>&lt;script&gt;中内嵌部分代码中不能用&lt;/script&gt;，因为解释器遇到script后就会解释为script脚本停止。<br>&lt;script type=text/javascript src=“a.js”&gt;这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js”</p>
+<p>通常外部引用都要放到head中，例如CSS，但是为了加速页面的加载，javascript的外部引用一般放在&lt;body&gt;的最末尾</p>
+<p>也可以用defer属性 延迟加载脚本<br>async属性 （HTML5）新增 但是不保证会按照async的属性来加载<br>写法如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">“text/javascript”</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">“1.js”</span>&gt;</span><span class="undefined"></span></div></pre></td></tr></table></figure></p>
+<p>不要在异步脚本加载期间修改DOM</p>
+<p>异步脚本一定会在页面load后执行，但可能在DOMContentLoaded之前或之后发生。</p>
+<p>标识符指的是变量，函数和属性的名字，或者函数的参数。</p>
+<p>严格模式 “use strict” 某些不确定行为将得到处理，不安全操作也会抛出异常。</p>
+<p>Javascript中的变量为松散类型的，即可以保留任何类型的数据。<br>给未经声明的变量赋值会在严格模式下抛出ReferenceError错误<br>严格模式下不能定义名为eval或arguments的变量，否则会导致语法错误</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/02/Time-After-Time/" data-id="cj89ondqy00044alvyhb5oa2v" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/02/Closjure/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          JavaScript 高级程序设计(2)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/02/Face-to-Face/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">三星面试面经</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test2/">test2</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/test2/" style="font-size: 10px;">test2</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/02/Ajax/">JavaScript高级程序设计(3)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Closjure/">JavaScript 高级程序设计(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Time-After-Time/">Javascript 高级程序设计</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Face-to-Face/">三星面试面经</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 George Yu<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

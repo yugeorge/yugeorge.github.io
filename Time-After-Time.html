@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>从前端到前端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Javascript 高级程序设计\中内嵌部分代码中不能用\，因为解释器遇到script后就会解释为script脚本停止。\这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js” 通常外部引用都要放到head中，例如CSS，但是为了加速页面的加载，javascript的外部引用一般放在\的最末尾 也可以用defer属性 延迟加载脚本async属性 （HTML5）新增 但是不保证">
+<meta property="og:type" content="website">
+<meta property="og:title" content="从前端到前端">
+<meta property="og:url" content="http://yoursite.com/Time-After-Time.html">
+<meta property="og:site_name" content="从前端到前端">
+<meta property="og:description" content="Javascript 高级程序设计\中内嵌部分代码中不能用\，因为解释器遇到script后就会解释为script脚本停止。\这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js” 通常外部引用都要放到head中，例如CSS，但是为了加速页面的加载，javascript的外部引用一般放在\的最末尾 也可以用defer属性 延迟加载脚本async属性 （HTML5）新增 但是不保证">
+<meta property="og:updated_time" content="2017-10-02T03:06:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从前端到前端">
+<meta name="twitter:description" content="Javascript 高级程序设计\中内嵌部分代码中不能用\，因为解释器遇到script后就会解释为script脚本停止。\这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js” 通常外部引用都要放到head中，例如CSS，但是为了加速页面的加载，javascript的外部引用一般放在\的最末尾 也可以用defer属性 延迟加载脚本async属性 （HTML5）新增 但是不保证">
+  
+    <link rel="alternate" href="/atom.xml" title="从前端到前端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">从前端到前端</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Time-After-Time.html" class="article-date">
+  <time datetime="2017-10-02T03:11:19.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Javascript-高级程序设计"><a href="#Javascript-高级程序设计" class="headerlink" title="Javascript 高级程序设计"></a>Javascript 高级程序设计</h1><p>\<script\>中内嵌部分代码中不能用\</script\>，因为解释器遇到script后就会解释为script脚本停止。<br>\<script type="text/javascript" src="“a.js”\">这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js”</p>
+<p>通常外部引用都要放到head中，例如CSS，但是为了加速页面的加载，javascript的外部引用一般放在\<body\>的最末尾</p>
+<p>也可以用defer属性 延迟加载脚本<br>async属性 （HTML5）新增 但是不保证会按照async的属性来加载<br>写法如下：<br><code>``javascript</code><script type=“text/javascript” async src=“1.js”><br>不要在异步脚本加载期间修改DOM<br>异步脚本一定会在页面load后执行，但可能在DOMContentLoaded之前或之后发生。</p>
+<p>标识符 指的是变量，函数和属性的名字，或者函数的参数。</p>
+<p>严格模式 “use strict” 某些不确定行为将得到处理，不安全操作也会抛出异常。</p>
+<p>Javascript中的变量为松散类型的，即可以保留任何类型的数据。<br>给未经声明的变量赋值会在严格模式下抛出ReferenceError错误<br>严格模式下不能定义名为eval或arguments的变量，否则会导致语法错误</p>
+<p>ECMAScript基本数据类型 Boolean Number String Undefined Null<br>复杂数据类型 Object<br>对没有声明的变量可以使用typeof函数，结果返回的是undefined<br>Null值表示一个空的对象指针，所以typeof(null)返回值为object<br>null==u  defined 返回值为真<br>保存对象的变量还没有真正地保存变量，就应该赋给null值<br>空字符串”“的Boolean值返回为false<br>0和NaN的Boolean返回值为false，其余number为true<br>null的Boolean返回值为false<br>数值表示 0x 表示十六进制，0开头表示8⃣️进制<br>NaN除以任何数均为NaN，NaN与任何值都不相等，包括NaN<br>isNaN()是否为数值 是数值或能转换为数值（”10“ boolean类型true等）返回为true<br>三个转换非数值为数值的函数：Number() parseInt() parseFloat()<br>其中第一个函数适用任何类型<br>另外两个函数专门用于String类型<br>Number()函数的返回值<br>字符串中只包含数字转换为对应的十进制数字。忽略前面的0<br>”011“转换为11<br>字符串为空转换为0<br>字符串包含其他字符，输出为NaN</p>
+<p>parseInt()函数 忽略前面的空格 直到遇见第一个数字，并忽略数字后面的非数字字符，包括小数点，空字符返回NaN<br>也可以使用第二个参数作为转换时的基数 表示几进制<br>parseFloat()与parseInt()相似，只是遇到第二个小数点后才认为结束，只解析十进制的值</p>
+<p>Sting类型的toString()方法 每个类型都有，除了null与undefined 没有<br>对于这两个，可以用String()来返回undefined 和null<br><code>``javascript
+````alert(String(undefined));    //undefined
+````alert(String(null)); //null</code>对非数值使用一元+/-操作符会将得到的值通过Number方法转换为数字</p>
+<p>逻辑与 &amp;&amp; 逻辑或<br>for in 语句用来枚举对象的类型<br>例子：<br>    ‘ for (var propName in window) {<br>    ‘    document.write(propName);<br>    ‘}</p>
+<p>函数定义时，不必一定声明是否需要返回值<br>函数return后面的语句并不会执行。<br>JavaScript函数没有重载<br>JavaScript函数的参数与其他语言并不是那么相似，并不关心参数的数量与类型，因为它们都是被传递到一个数组中，在函数体中可以通过arguments数组来访问这些参数。<br>例如：<br>     function sayHi(a,b){<br>        alert(“Hello”+a+b);<br>    }<br>    function sayHi(){<br>      alert(“Hello “ + arguments[0]+arguments[1]);<br>    }<br>    //以上两个函数实现相同功能 </p>
+<p>不能给基本类型值添加属性，虽然不会报错，但是会输出undefined</p>
+<p>typeof 检测数据类型 Instanceof 检测引用类型<br>基本类型的instance始终会返回false</p>
+<p>没有块级作用域<br>    if（true）{<br>         var color =”blue”;<br>    }<br>        alert(color); //     “blue”</p>
+<p>看到4.2 72</p>
+<p>访问变量有按值和按引用两种方式，而参数只能按值传递</p>
+</script></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Time-After-Time.html" data-id="cj89ondpu00004alvnssduxrb" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test2/">test2</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/test2/" style="font-size: 10px;">test2</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/02/Ajax/">JavaScript高级程序设计(3)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Closjure/">JavaScript 高级程序设计(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Time-After-Time/">Javascript 高级程序设计</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Face-to-Face/">三星面试面经</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 George Yu<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

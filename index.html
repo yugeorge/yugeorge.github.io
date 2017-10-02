@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>从前端到前端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="从前端到前端">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="从前端到前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从前端到前端">
+  
+    <link rel="alternate" href="/atom.xml" title="从前端到前端" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">从前端到前端</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Ajax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/Ajax/" class="article-date">
+  <time datetime="2017-10-02T03:06:27.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/Ajax/">JavaScript高级程序设计(3)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><p>技术的核心是XMLHttpRequest对象<br>XHR的用法，首先要调用的第一个方法是open(),它接受3个参数，包括要发送的请求类型，请求URL，是否采用异步发送请求。</p>
+<p>xhr.open(“get”，URL，false)；<br>调用open()方法不会真正发送请求，而只是启动了一个请求以备发送。</p>
+<p>xhr.send() 该方法接收一个参数，即要发送的数据。如果不需要发送数据，则必须传入null，因为这个参数对浏览器是必须的。<br>由于是同步的，所以JavaScript代码会等到服务器响应后再执行。<br>响应数据会自动填充XHR对象的属性：</p>
+<ul>
+<li>responseText 返回的主体文本</li>
+<li>responseXML 响应数据的XML文档</li>
+<li>status HTTP状态</li>
+</ul>
+<p>我们经常还是要发送异步请求，让JavaScript继续执行，而不必等待响应，可以通过检测XHR对象的readyState属性，表明请求/响应过程的活动阶段</p>
+<ul>
+<li>0 还未调用open()</li>
+<li>1 启动，调用open()还未调用send()方法</li>
+<li>2 发送 已经调用send() 并未收到响应</li>
+<li>3 接收 接收到部分响应数据</li>
+<li>4 完成 已经接收到全部响应数据</li>
+</ul>
+<p>readyState属性改变时会触发一次readystatechange事件</p>
+<blockquote>
+<p>必须在调用open()前指定onreadystatechange事件处理程序，此时open方法里面的参数为true</p>
+</blockquote>
+<h2 id="HTTP头部信息"><a href="#HTTP头部信息" class="headerlink" title="HTTP头部信息"></a>HTTP头部信息</h2><ul>
+<li>Accept：浏览器能处理的内容类型</li>
+<li>Connection:浏览器与服务器之间连接的类型</li>
+<li>Cookie：当前页面设置的任何cookie</li>
+<li>Host：发出请求的页面所在域</li>
+<li>Referer 发出请求页面的URL<br>可以设置请求包头的信息<br>xhr.setRequestHeader(“MyHeader”,”MyValue”);<br>以上代码必须在open()之后，send()之前；<br>GET从服务器获取数据<br>POST向服务器提交数据<blockquote>
+<p>与GET请求相比，POST请求消耗资源更多些，发送相同的数据，GET请求速度是POST请求的2倍</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="CORS（Cross-Origin-Resource-Sharing-跨域资源共享"><a href="#CORS（Cross-Origin-Resource-Sharing-跨域资源共享" class="headerlink" title="CORS（Cross-Origin Resource Sharing)跨域资源共享"></a>CORS（Cross-Origin Resource Sharing)跨域资源共享</h2><p>其基本思想为使用自定义的HTTP头部让浏览器与服务器进行沟通。决定请求响应成功或失败。</p>
+<p>其他跨域技术<br>上述第一种跨域请求技术是使用\<img\>标签，一个网页可以从任何网页中加载图像，不用担心跨域，动态创建图像Ping只能发送GET请求，而且无法访问服务器的响应文本，图像Ping只能用于浏览器与服务器的单向通信。</img\></p>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>是JSON with padding (填充式JSON 或参数式JSON）的简写，是包含在函数调用中的JSON<br>JSONP是由两部分组成：回调函数和数据<br>回调函数为响应到来时在页面调用的函数<br>数据是传入回调函数中的数据<br><a href="http://xx.xx.xx/json/?callback=handleResponse" target="_blank" rel="external">http://xx.xx.xx/json/?callback=handleResponse</a><br>\<script\>元素与\<img\>元素类似，有能力不受限制地从其他域加载资源。<br>JSONP使用例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleResponse</span>(<span class="params">response</span>)</span>&#123;</div><div class="line">		alert(<span class="string">"You are at IP address"</span> +response.ip +<span class="string">",which is "</span>+response.city +<span class="string">","</span> +response.region_name);</div><div class="line">	<span class="keyword">var</span> script =<span class="built_in">document</span>.createElment(<span class="string">"script"</span>)；</div><div class="line">script.src=<span class="string">"http://xx.xx.xx/json/?callback=handleResponse"</span>;</div><div class="line"><span class="built_in">document</span>.body.insertBefore(script ,<span class="built_in">document</span>.body.firstChild);</div></pre></td></tr></table></figure></img\></script\></p>
+<p>优点在于直接访问响应文本，支持浏览器与服务器间双向通信</p>
+<h2 id="Comet技术"><a href="#Comet技术" class="headerlink" title="Comet技术"></a>Comet技术</h2><p>一种服务器向页面推送数据的技术<br>适合处理体育比赛或者股票信息<br>两种实现Comet的方式：</p>
+<ul>
+<li>长轮询</li>
+<li>HTTP流</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/02/Ajax/" data-id="cj89ondqk00014alvv4gnbqau" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Closjure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/Closjure/" class="article-date">
+  <time datetime="2017-10-02T03:06:27.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/Closjure/">JavaScript 高级程序设计(2)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="闭包-Closjure"><a href="#闭包-Closjure" class="headerlink" title="闭包 Closjure"></a>闭包 Closjure</h1><blockquote>
+<p>在函数内部定义了其他函数时，就创建了闭包</p>
+<p>闭包是为了让函数内部访问外部作用域</p>
+</blockquote>
+<p>当函数返回一个闭包时，这个函数的作用域将会一直在内存中保存直到闭包不再存在。</p>
+<p>闭包的例子:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">var</span> m=<span class="number">50</span>;</div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">son</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(m);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> son;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> s=parent();<span class="comment">//将结果保存在全局里</span></div><div class="line">s();<span class="comment">//50</span></div></pre></td></tr></table></figure></p>
+<h2 id="this对象与闭包的关系："><a href="#this对象与闭包的关系：" class="headerlink" title="this对象与闭包的关系："></a>this对象与闭包的关系：</h2><p>每个函数在被调用时，其活动对象就会自动获得两个特殊变量：this和arguments，内部函数永远无法直接访问外部函数中的这两个变量，所以建议用闭包的方式去访问这两个变量</p>
+<p>闭包引起的内存泄露问题,回收闭包中的内存问题：</p>
+<p>用作块级作用域（私有作用域）的匿名函数语法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//模拟块级作用域</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>前面圆括号里面是一个函数表达式，后面表示立即调用这个匿名函数。</p>
+<p>javascript中的私有变量，函数中定义的变量，可以访问私有变量和私有函数的公共方法称为特权方法。<br>例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myObject</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//私有变量和私有函数</span></div><div class="line">		<span class="keyword">var</span> privateVariable =<span class="number">10</span>;</div><div class="line">		<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">			<span class="comment">//特权方法</span></div><div class="line">		<span class="keyword">this</span>.publicMethod=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			privateVariable++;</div><div class="line">			<span class="keyword">return</span> privateFunction();</div><div class="line">		&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>特权方法作为闭包有权访问在构造函数中定义的所有变量和函数，利用私有成员和特权方法，可以隐藏那些不该被直接修改的数据。</p>
+<p>在原型上定义特权方法：<br>Example：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> privateVariable =<span class="number">10</span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	&#125;</div><div class="line">    <span class="comment">//构造函数</span></div><div class="line">   MyObject = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	 &#125;;</div><div class="line">     <span class="comment">//特权方法</span></div><div class="line">	MyObject.prototype.publicMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			privateVariable++;</div><div class="line">			<span class="keyword">return</span> privateFunction();</div><div class="line">		&#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>上面代码中的私有变量和函数是由实例共享的。<br>即修改一个实例的变量会影响其他变量。</p>
+<h2 id="单例（Singleton-模式"><a href="#单例（Singleton-模式" class="headerlink" title="单例（Singleton)模式"></a>单例（Singleton)模式</h2><p>只有一个实例的对象，单例一般作为全局对象存在。<br>以对象字面量的方式创建单例对象：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> singelton=&#123;</div><div class="line">	name:value;</div><div class="line">	method:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	     <span class="comment">//方法的代码</span></div><div class="line">	&#125;</div><div class="line">&#125;；</div></pre></td></tr></table></figure></p>
+<p>模块模式通过为单例添加私有变量和特权方法增强</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> singleton=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> privateVariable=<span class="number">10</span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privatFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> &#123;</div><div class="line">	<span class="comment">//特权方法和属性</span></div><div class="line">          publicProperty:<span class="literal">true</span>,</div><div class="line">	  publicMethod : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		privateVariable++;</div><div class="line">		<span class="keyword">return</span> privateFunction();</div><div class="line">		&#125;</div><div class="line">         &#125;;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>可以使用构造函数模式、原型模式来实现自定义类型的特权方法，也可以使用模块模式、增强的模块模式来实现单例的特权方法</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/02/Closjure/" data-id="cj89ondqr00024alv3ddzn5fq" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Time-After-Time" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/Time-After-Time/" class="article-date">
+  <time datetime="2017-10-02T03:06:27.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/Time-After-Time/">Javascript 高级程序设计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Javascript-高级程序设计（一）"><a href="#Javascript-高级程序设计（一）" class="headerlink" title="Javascript 高级程序设计（一）"></a>Javascript 高级程序设计（一）</h1><p>&lt;script&gt;中内嵌部分代码中不能用&lt;/script&gt;，因为解释器遇到script后就会解释为script脚本停止。<br>&lt;script type=text/javascript src=“a.js”&gt;这个时候会忽略后面的内嵌javascript转而变成引用外部的“a.js”</p>
+<p>通常外部引用都要放到head中，例如CSS，但是为了加速页面的加载，javascript的外部引用一般放在&lt;body&gt;的最末尾</p>
+<p>也可以用defer属性 延迟加载脚本<br>async属性 （HTML5）新增 但是不保证会按照async的属性来加载<br>写法如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">“text/javascript”</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">“1.js”</span>&gt;</span><span class="undefined"></span></div></pre></td></tr></table></figure></p>
+<p>不要在异步脚本加载期间修改DOM</p>
+<p>异步脚本一定会在页面load后执行，但可能在DOMContentLoaded之前或之后发生。</p>
+<p>标识符指的是变量，函数和属性的名字，或者函数的参数。</p>
+<p>严格模式 “use strict” 某些不确定行为将得到处理，不安全操作也会抛出异常。</p>
+<p>Javascript中的变量为松散类型的，即可以保留任何类型的数据。<br>给未经声明的变量赋值会在严格模式下抛出ReferenceError错误<br>严格模式下不能定义名为eval或arguments的变量，否则会导致语法错误</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/02/Time-After-Time/" data-id="cj89ondqy00044alvyhb5oa2v" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Face-to-Face" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/Face-to-Face/" class="article-date">
+  <time datetime="2017-10-02T03:06:27.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/Face-to-Face/">三星面试面经</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="三星面试面经"><a href="#三星面试面经" class="headerlink" title="三星面试面经"></a>三星面试面经</h2><p>一开始是自我介绍，然后介绍一下自己做的项目，画了一下系统框图，主要对项目的整体框架准备得不太充分，画得不太具体，被面试官问到了许多漏洞，应该事先好好准备一下，然后突出一下自己做的部分，虽然自己做的有点low。</p>
+<p>然后就是笔试写代码部分，可能是一直在调试，好久没写代码的缘故，其实就是基础不太扎实，问了两个很简单的问题都答得不是太好，自我感觉是跪了，<br>第一题问的是状态机的实现方式，做的是一个序列检测器，应该先画一个状态转移图然后再去写代码，感觉自己逻辑关系都没有搞清，就去实现，所以代码写的不是很好，有些漏洞，而且也没有加入idle的状态，所以被面试官说的不够严谨，他们要招的是一个RTL级的verilog代码编写者，显然我这方面水平不行。然后还要一道是占空比为1：1的5分频，由于之前写的都是偶数分频的程序，并没有写过奇数倍分频的程序，所以这个思想也要掌握下，<br>  以下贴出的是网上的代码：感觉也可以用于其他奇数倍的分频</p>
+<pre><code><figure class="highlight v"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span> div_5(clkin,rst,clkout); </div><div class="line"><span class="keyword">input</span> clkin,rst; </div><div class="line"><span class="keyword">output</span> clkout; </div><div class="line"><span class="keyword">reg</span>[<span class="number">2</span>:<span class="number">0</span>] step1,step2; </div><div class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clkin) </div><div class="line">	<span class="keyword">if</span>(!rst)  </div><div class="line">		step1&lt;=<span class="number">3'b000</span>; </div><div class="line">	<span class="keyword">else</span> </div><div class="line">	<span class="keyword">begin</span> </div><div class="line">		<span class="keyword">case</span>(step1)  </div><div class="line"> 			<span class="number">3'b000</span>:step1&lt;=<span class="number">3'b001</span>;</div><div class="line">			<span class="number">3'b001</span>:step1&lt;=<span class="number">3'b011</span>;</div><div class="line">			<span class="number">3'b011</span>:step1&lt;=<span class="number">3'b100</span>; </div><div class="line">			<span class="number">3'b100</span>:step1&lt;=<span class="number">3'b010</span>; </div><div class="line">			<span class="number">3'b010</span>:step1&lt;=<span class="number">3'b000</span>; </div><div class="line">		<span class="keyword">default</span>:step1&lt;=<span class="number">3'b000</span>; </div><div class="line">		<span class="keyword">endcase</span>  </div><div class="line">	<span class="keyword">end</span> </div><div class="line"><span class="keyword">always</span> @(<span class="keyword">negedge</span> clkin) </div><div class="line">	<span class="keyword">if</span>(!rst) </div><div class="line">step2&lt;=<span class="number">3'b000</span>; </div><div class="line">	<span class="keyword">else</span> </div><div class="line">		<span class="keyword">begin</span> </div><div class="line">			<span class="keyword">case</span>(step2) </div><div class="line">				<span class="number">3'b000</span>:step2&lt;=<span class="number">3'b001</span>; </div><div class="line">				<span class="number">3'b001</span>:step2&lt;=<span class="number">3'b011</span>; </div><div class="line">				<span class="number">3'b011</span>:step2&lt;=<span class="number">3'b100</span>; </div><div class="line">				<span class="number">3'b100</span>:step2&lt;=<span class="number">3'b010</span>; </div><div class="line">				<span class="number">3'b010</span>:step2&lt;=<span class="number">3'b000</span>; </div><div class="line">			<span class="keyword">default</span>:step2&lt;=<span class="number">3'b000</span>; </div><div class="line">	<span class="keyword">endcase</span> </div><div class="line"><span class="keyword">end</span> </div><div class="line">	<span class="keyword">assign</span> clkout=step1[<span class="number">0</span>]|step2[<span class="number">0</span>]; </div><div class="line"><span class="keyword">endmodule</span></div></pre></td></tr></table></figure>
+</code></pre><h3 id="sanbufen"><a href="#sanbufen" class="headerlink" title="sanbufen"></a>sanbufen</h3><p>然后问了下C语言的题，感觉自己好久不看C语言，好多都不太会，有一题char与const char类型的比较，另一道题涉及指针以及函数的题，也觉得答得不是太好。<br>最后就问了下建立时间和保持时间，以及如何解决建立时间的问题，虽然之前看过一些时序分析的文档，但是也没有答得很好，只是讲了一下,感觉面试官应该不太满意，回来后查了一下应该就是将时钟速率降低，但是也不能降得太低。</p>
+<p>人生中的第一次面试就在这样匆匆忙忙中结束啦，回来的地铁上还接到了导师的电话，晚上又谈了下项目，虽然这次面试结果不太好，但是还是有很多体会的。主要有以下几点：</p>
+<ol>
+<li>对自己的项目介绍要充分有条理，包括框图的介绍，以及自己的工作完成情况。</li>
+<li>对基础代码的书写要规范，感觉大公司很重视这一点，平时也要培养自己代码规范的习惯。</li>
+<li><p>平时要积累一些数字电路方面的知识，以及时序约束方面的知识。</p>
+<p>最后说一点题外话吧，在实验室呆久了，容易不太了解外面的世界，也可能自身对自己要求不是很高，所以一直觉得自己还可以，有点漂，这次面试也是一个契机，是时候该沉下心来好好看一看书啦，以前总是在做项目，其实项目中的好多问题也是很基础的问题，所以回归基础应该是重中之重。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/02/Face-to-Face/" data-id="cj89ondqz00054alvbrgidfuh" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/hello-world/" class="article-date">
+  <time datetime="2017-10-02T03:06:27.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/02/hello-world/" data-id="cj89ondr100064alvwqsjegsr" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test2/">test2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test2/">test2</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/test2/" style="font-size: 10px;">test2</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/02/Ajax/">JavaScript高级程序设计(3)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Closjure/">JavaScript 高级程序设计(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Time-After-Time/">Javascript 高级程序设计</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/Face-to-Face/">三星面试面经</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 George Yu<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
